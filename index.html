@@ -26,6 +26,24 @@
                 return document.createElement(elem);
             }
 
+            function select(selector){
+               return document.querySelector(selector);
+            }
+            //1. Function Defiantion
+            //This is my user Defined funciton
+            function appendToHead(elem){
+                document.head.append(elem);
+            }
+            //1. function defination
+           // i am creating a user defined function
+
+           function appendToBody(elem){
+                document.body.append(elem);
+
+                //this funtion will not return anything
+
+           }
+
             var link = createMyElement('link');
             var script = createMyElement('script');
             
@@ -72,11 +90,7 @@
            console.log(s);
            
 
-           //1. Function Defiantion
-           //This is my user Defined funciton
-           function appendToHead(elem){
-                document.head.append(elem);
-           }
+           
 
            //DRY
            appendToHead(link);
@@ -116,7 +130,8 @@
            h.appendChild(headerTop);
            h.appendChild(headerBottom);
 
-           document.body.append(h);
+           appendToBody(h);
+           //document.body.append(h);
 
 
            // Select DOM Elelemtn
@@ -126,17 +141,12 @@
 
            //DRY
 
-           function select(selector){
-               return document.querySelector(selector);
-           }
+          
 
            var styleobject = {
                "height":'169px',
                "border":'1px dashed #000',
            }
-
-
-           
 
            //select('.a_header').style.height = '169px';
            select('.a_header').style.border = '1px dashed #000';
@@ -159,7 +169,101 @@
            document.querySelector('.a_headerbottom > div.container').style.border='1px dashed blue';
 
 
+           //DRY
+           var f = document.createElement('footer');
 
+           var main = createMyElement('div');
+           main.setAttribute('class',"a_main");
+           console.log(main);
+           console.log(f);
+
+
+           
+
+           //DRY
+
+           appendToBody(main);
+           appendToBody(f);
+
+           //Now my code is reusable 
+
+           //document.body.append(main);
+           //document.body.append(f);
+            var myStyle = {
+                 backgroundColor:"blue",
+                 height:"12255px"
+            }
+
+            console.log('The value of bc is ',myStyle.backgroundColor); //1.
+            console.log('The value of height is ',myStyle["height"]); // 2.
+            let x = 'height';
+            console.log('The value of height is ',myStyle[x]); // 3.
+
+
+            //1. Funciton defination
+            function applyStyleToElement(styleObject,selector){
+                //How to access the property of an object
+
+                //1. object.property
+
+                //2. object["property"]
+                //3. objecct[exp]
+
+                for (const key in styleObject) {
+                    //console.log(key);
+                    console.log(styleObject[key]);
+                    console.log(document.querySelector(selector).style[key]);
+                    document.querySelector(selector).style[key] = styleObject[key];
+                }
+                
+            }
+
+            //object.member
+
+            //2. Function calling
+
+            //DRY
+
+            applyStyleToElement(myStyle,'.a_main');
+
+           //document.querySelector('.a_main').style.backgroundColor = 'blue';
+           //document.querySelector('.a_main').style.height = '12255px';
+
+
+           document.querySelector('footer').setAttribute('class',"myFooter");
+           var myStyle = {
+                backgroundColor:"orange"
+            }
+
+            applyStyleToElement(myStyle,'footer');
+
+
+           var footerTop =  createMyElement('div');
+
+           console.log(footerTop);
+
+           //1. Funciton defination
+
+           function appendToElement(elem,selector){ // source and destination are formal arg
+            //Funciton body
+                document.querySelector(selector).append(elem);
+           }
+
+
+           //2. Funciton Calliing
+        
+           appendToElement(document.createElement('div'),'footer');
+           appendToElement( document.createElement('div'),'footer');
+
+
+           var ft = document.querySelector('footer > div:first-child');
+           ft.innerHTML = 'FooterTOp';
+           ft.style.height = '2722px';    
+           ft.style.backgroundColor = 'purple';    
+           var fb = document.querySelector('footer > div:last-child');
+           fb.innerHTML = 'FooterBottom';
+           fb.style.height = '497px';    
+           fb.style.backgroundColor = 'red';  
 
         </script>
     </body>
