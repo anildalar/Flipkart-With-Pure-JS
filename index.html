@@ -265,6 +265,134 @@
            fb.style.height = '497px';    
            fb.style.backgroundColor = 'red';  
 
+
+           //var are global varible global scope
+           var myStudents = {
+               students:[{name:"Avinash"},{name:"Abhishek"}] //Array of
+           }
+
+           var jsObj = {
+               //1. Property:Value
+               fname:"Anil",
+               lname:"Dollor",
+               addr:"Neemuch MP",
+               age:30,
+               company:'oklabs',
+               //2. Functions/mETHOD
+               getFullName:function(){
+                   console.log(this.fname +' '+ this.lname);
+               },
+               getAddress:function(){
+                    //To return something
+                    return this.addr;
+               },
+               getMyStudents:function(){
+                   return myStudents; // SO i am returnin an object
+               }
+           }
+           console.log(jsObj);
+           console.log('Before Remove ',jsObj.company);
+
+           //delete object.propertyName
+
+           delete jsObj.company;
+           console.log('After Remove '+jsObj.company);
+           console.log(jsObj);
+
+           //Object.method();
+           
+           jsObj.getFullName();
+           //Object.property
+           console.log(jsObj.lname)
+
+           console.log(jsObj.age);
+
+           console.log(jsObj.getAddress());
+
+           let ss = jsObj.getMyStudents();
+
+           console.log(typeof ss);
+           console.log(ss.students);
+
+           ss.students.forEach((currentValue,index,arr) => {
+               console.log('Hello ',currentValue.name);
+           });
+
+           //How to iterate of Array of object [{},{}]
+
+           //1. {}
+           //2. []
+           //3. [{},{}] //Array of Object  ForEach
+
+           //How you can remove a property from a JS object
+
+           //Lets create some nav element
+
+           var u = createMyElement('ul');
+           u.setAttribute('class',"nav");
+           console.log(u);
+
+           var o = {
+               count:4,
+               createElement:function(elem){
+                   return document.createElement(elem);
+               }
+           }
+
+
+           //console.log(o.createElement('li'));
+
+           for (let index = 0; index < o.count; index++) {
+
+                var l = o.createElement('li');
+                var a = o.createElement('a');
+
+                a.classList.add('nav-link');
+                a.setAttribute('href',"#");
+                a.textContent = index;
+                a.style.color = 'white';
+                if(index == 0){
+                    a.classList.add('active');
+                }
+                l.append(a);
+                //l.append()
+                l.setAttribute('class','nav-item');
+                u.append(l);
+               
+           }
+           console.log(u);
+           
+           document.querySelector('.a_headertop > div.container').append(u);
+
+
+           //console.log(document.querySelector('.a_headertop > div.container > ul > li:nth-child(2) > a'));
+           let a2 = document.querySelector('.a_headertop > div.container > ul > li:nth-child(2) > a');
+           a2.remove();
+
+           var f = `<form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>`;
+
+           document.querySelector('.a_headertop > .container > ul > li:nth-child(2)').innerHTML = f;
+                
+            var wrapper= document.createElement('div');
+            wrapper.innerHTML= '<div><a href="#"></a><span></span></div>';
+
+            console.log(wrapper);
+            //var div= wrapper.firstChild;
         </script>
     </body>
 </html>
